@@ -27,21 +27,23 @@ def enregdestination():
 
     if nom != '' and continent != '' and temps_moyen != '' and note_des_voyageurs != '':
         
-        conn = sqlite3.connect('../bdd/BDD_Agence.db') # connection à la BDD
+        conn = sqlite3.connect('./NSI projet/bdd/BDD_Agence.db') # connection à la BDD
         cur = conn.cursor()
 
-        cur.execute("INSERT INTO destinations (nom,continent,temps_moyenne,note_voyageurs VALUES (?,?,?,?))"(nom,continent,temps_moyen,note_des_voyageurs))
+        cur.execute("INSERT INTO destinations (nom,continent,temps_moyenne,note_voyageurs) VALUES (?,?,?,?);",(nom,continent,temps_moyen,note_des_voyageurs))
+        
+        conn.commit()
+        cur.close()
+        conn.close()
 
-        return render_template("enregdestination.html")
+        return render_template("enregdestination.html", nom=nom, continent=continent, temps_moyen=temps_moyen, note_des_voyageurs=note_des_voyageurs)
 
+        
 
     else :
         #revenir à la page réservation
         return render_template('enregdestination.html', message='formulaire non valide')
 
-
-
-    
 
 
 @app.route('/enregvol')
@@ -81,6 +83,3 @@ def reservlogement():
 
 app.run(debug=True)
 
-
-print('TORMA PITIN')
-i pull up
