@@ -83,3 +83,4 @@ app.run(debug=True)
 
 
 print('TORMA PITIN')
+i pull up
